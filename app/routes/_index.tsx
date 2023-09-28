@@ -1,7 +1,16 @@
-import type { MetaFunction } from "@vercel/remix"
+import type { LoaderFunctionArgs, MetaFunction } from "@vercel/remix"
+import { getSession } from "~/sessions"
 
 export const meta: MetaFunction = () => {
   return [{ title: "New Remix App" }, { name: "description", content: "Welcome to Remix!" }]
+}
+
+export async function loader({ request }: LoaderFunctionArgs) {
+  const session = await getSession(request.headers.get("Cookie"))
+
+  console.log(session.data)
+
+  return {}
 }
 
 export default function Index() {
