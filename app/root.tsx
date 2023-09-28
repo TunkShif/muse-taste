@@ -1,8 +1,10 @@
 import { cssBundleHref } from "@remix-run/css-bundle"
-import type { LinksFunction } from "@remix-run/node"
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react"
+import { type LinksFunction } from "@vercel/remix"
 import { NavBar } from "~/components/nav-bar"
 import styles from "~/globals.css"
+
+import "@fontsource-variable/inter/wght.css"
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: styles },

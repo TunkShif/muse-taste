@@ -1,4 +1,5 @@
 import { Link } from "@remix-run/react"
+import { redirect, type LoaderFunctionArgs } from "@vercel/remix"
 import { Button } from "~/components/ui/button"
 import {
   Card,
@@ -9,6 +10,17 @@ import {
   CardTitle
 } from "~/components/ui/card"
 import { SpotifyIcon } from "~/components/ui/icons"
+import { getSession } from "~/sessions.server"
+
+export async function loader({ request }: LoaderFunctionArgs) {
+  const session = await getSession(request.headers.get("Cookie"))
+
+  if (session.has("accessToken")) {
+    return redirect("/home")
+  }
+
+  return null
+}
 
 export default function Connect() {
   return (

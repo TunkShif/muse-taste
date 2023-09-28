@@ -1,7 +1,7 @@
 import { redirect, type LoaderFunctionArgs } from "@vercel/remix"
-import { Spotify } from "~/lib/spotify"
+import { Spotify } from "~/lib/spotify.server"
 import { generateRandomString } from "~/lib/utils"
-import { commitSession, getSession } from "~/sessions"
+import { commitSession, getSession } from "~/sessions.server"
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const session = await getSession(request.headers.get("Cookie"))
